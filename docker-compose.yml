@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  backend:
+    image: todo-backend
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    ports:
+      - '9000:9000'
+    environment:
+      - PORT=9000
+      - APP_NAME=My Docker Todo Backend Changed NORRIS
+
+  frontend:
+    image: todo-frontend
+    # build:
+    #   context: ./frontend
+    #   dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:9000
+      - NEXT_PUBLIC_APP_TITLE=Next.js Todo App Norris
+      - NEXT_PUBLIC_APP_DESCRIPTION=Containerized todo app with Docker
