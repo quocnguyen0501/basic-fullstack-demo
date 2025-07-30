@@ -12,20 +12,20 @@ export default function Home() {
 
 	const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
 
-	useEffect(() => {
-		const fetchAppInfo = async () => {
-			try {
-				const res = await fetch(`${API_URL}/info`);
-				const data = await res.json();
-				setBackendAppName(data.appName);
-			} catch (error) {
-				console.error('Failed to fetch app info');
-			}
-		};
+	// useEffect(() => {
+	// 	const fetchAppInfo = async () => {
+	// 		try {
+	// 			const res = await fetch(`${API_URL}/info`);
+	// 			const data = await res.json();
+	// 			setBackendAppName(data.appName);
+	// 		} catch (error) {
+	// 			console.error('Failed to fetch app info');
+	// 		}
+	// 	};
 
-		fetchAppInfo();
-		fetchTodos();
-	}, []);
+	// 	fetchAppInfo();
+	// 	fetchTodos();
+	// }, []);
 
 	const fetchTodos = async () => {
 		const res = await fetch(`${API_URL}/todos`);
@@ -56,12 +56,12 @@ export default function Home() {
 				<div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white">
 					<h1 className="text-3xl font-bold text-center">{frontendTitle}</h1>
 					<p className="text-center mt-2 opacity-90">{frontendDescription}</p>
-					<div className="mt-4 text-center text-sm bg-white/20 rounded-full py-1 px-3 inline-block">
+					{/* <div className="mt-4 text-center text-sm bg-white/20 rounded-full py-1 px-3 inline-block">
 						Connected to: {backendAppName}
-					</div>
+					</div> */}
 				</div>
 
-				<div className="p-6">
+				{/* <div className="p-6">
 					<div className="flex gap-2 mb-6">
 						<input
 							type="text"
@@ -122,7 +122,7 @@ export default function Home() {
 							{todos.length} {todos.length === 1 ? 'task' : 'tasks'} remaining
 						</div>
 					)}
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
