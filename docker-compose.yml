@@ -9,7 +9,9 @@ services:
       - '9000:9000'
     environment:
       - PORT=9000
-      - APP_NAME=My Docker Todo Backend Changed NORRIS
+      - APP_NAME=Docker Todo Backend
+      - NODE_ENV=production
+      - CORS_WHITELIST=https://yourdomain.com,https://www.yourdomain.com
 
   frontend:
     image: todo-frontend

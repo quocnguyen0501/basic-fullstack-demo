@@ -5,10 +5,34 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 9000;
 const APP_NAME = process.env.APP_NAME || 'Todo App';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 let todos = [];
 
-app.use(cors());
+const whitelist = process.env.CORS_WHITELIST
+	? process.env.CORS_WHITELIST.split(',').map((domain) => domain.trim())
+	: ['http://localhost:3000'];
+
+const isDevelopment = NODE_ENV === 'development';
+
+const corsOptions = {
+	origin: function (origin, callback) {
+		if (!origin) return callback(null, true);
+
+		if (isDevelopment) {
+			return callback(null, true);
+		}
+
+		if (whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/info', (req, res) => {
